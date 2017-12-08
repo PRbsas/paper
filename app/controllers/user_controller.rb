@@ -16,6 +16,18 @@ class UserController < ApplicationController
       redirect '/notebooks'
     else
       redirect '/signup'
+    end
+  end
+
+  post '/login' do
+    redirect '/notebooks' if logged_in?
+
+    user = User.find_by(username: paramas[:username])
+    if user && user.authenticate(params[:password])
+      session[:user_id] = user.id
+      redirect '/notebooks'
+    else
+      erb :'/users/login'
     end 
   end
 end
