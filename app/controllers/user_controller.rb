@@ -1,10 +1,12 @@
 class UserController < ApplicationController
 
   get '/signup' do
+    redirect '/notebooks' if logged_in?
     erb :'/users/create_user'
   end
 
   get '/login' do
+    redirect '/notebooks' if logged_in?
     erb :'/users/login'
   end
 
@@ -28,6 +30,11 @@ class UserController < ApplicationController
       redirect '/notebooks'
     else
       erb :'/users/login'
-    end 
+    end
+  end
+
+  get '/logout' do
+    logout! if logged_in?
+    redirect '/'
   end
 end
