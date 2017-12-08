@@ -3,10 +3,11 @@
     <h2 class="lh-title f3 b mt0">This are your current notebooks.</h2>
   </header>
 </article>
+
 <section class="cf w-100 pa2-ns">
   <% @notebooks.each do |notebook| %>
   <article class="fl w-100 w-50-m  w-25-ns pa2-ns">
-    <a href="#0" class="ph2 ph0-ns pb3 link db">
+    <a href="/notebooks/<%= notebook.id %>" class="ph2 ph0-ns pb3 link db">
       <h2 class="f4 f4-ns mb0 black-90">#00<%= notebook.id %></h2>
       <h3 class="f5 f4-ns mb0 black-90"><%= notebook.title %></h3>
       <h3 class="f6 f5 fw4 mt2 black-60"><%= notebook.description %></h3>
@@ -14,3 +15,13 @@
   </article>
   <% end %>
 </section>
+
+<article class="pa3 pa5-ns" data-name="slab-stat-small">
+  <h3 class="f6 ttu tracked">Stats</h3>
+  <div class="cf">
+      <dl class="fl fn-l w-50 dib-l w-auto-l lh-title mr5-l">
+        <dd class="f6 fw4 ml0">Notebooks</dd>
+        <dd class="f3 fw6 ml0"><%= @notebooks.size %></dd>
+      </dl>
+  </div>
+</article>

@@ -13,6 +13,15 @@ class NotebookController < ApplicationController
     erb :'/notebooks/create_notebook'
   end
 
+  get '/notebooks/:id' do
+    if logged_in?
+      @notebook = Notebook.find_by_id(params[:id])
+      erb :'/notebooks/show_notebook'
+    else
+      redirect '/'
+    end 
+  end
+
   post '/notebooks' do
     @notebook = current_user.notebooks.create(title: params[:title], description: params[:description]) unless params[:title].empty?
     if @notebook
