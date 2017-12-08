@@ -1,0 +1,16 @@
+<article class="cf pa3 mw9 center">
+  <header class="fl w-100 w-50-l pa3-m pa4-l mb3 mb5-l">
+    <h2 class="lh-title f3 b mt0">This are your current notebooks.</h2>
+  </header>
+  <section class="fl w-100">
+    <div class="fl w-100 w-50-m w-25-l pa3-m pa4-l">
+      <% @notebooks.each do |notebook| %>
+        <h1 class="f4 f2-l fw7 mt0 pv3-l bb-l bb--black">#001</h1>
+        <p class="lh-copy mt2 mt3-m mt5-l f6">
+          <span class="fw9 f6 f1-l db lh-title mb3 mb4-l"><%= notebook.title %></span>
+          <span class="db-l measure-wide"><%= notebook.content %></span>
+        </p>
+      <% end %>
+    </div>
+  </section>
+</article>

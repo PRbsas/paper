@@ -6,5 +6,5 @@ end
 
 use Rack::MethodOverride
 use UserController
-user NotebookController
+use NotebookController
 run ApplicationController
