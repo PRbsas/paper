@@ -1,0 +1,2 @@
+class NotebookController < ApplicationController
+end
