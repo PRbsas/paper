@@ -39,4 +39,16 @@ class NotebookController < ApplicationController
       redirect '/notebooks/new'
     end
   end
+
+  patch '/notebooks/:id' do
+    @notebook = current_user.notebooks.find_by_id(params[:id])
+    if logged_in? && !params[:title].empty?
+      @notebook.title = (params[:title])
+      @notebook.description = (params[:description])
+      @notebook.save
+      redirect "/notebooks/#{@notebook.id}"
+    else
+      redirect "/notebooks/#{@notebook.id}/edit"
+    end
+  end
 end

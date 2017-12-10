@@ -1,9 +1,18 @@
-<section class="cf w-100 pa2-ns">
-  <article class="fl w-100 w-50-m  w-25-ns pa2-ns">
-    <a href="/notebooks/<%= @notebook.id %>/edit" class="ph2 ph0-ns pb3 link db">
+<article class="pa4 black-80">
+  <form action="/notebooks/<%= @notebook.id %>" method="post" accept-charset="utf-8">
+    <input type="hidden" name="_method" value="patch">
+    <fieldset class="ba b--transparent ph0 mh0">
+      <legend class="f4 fw6 ph0 mh0">Edit Notebook</legend>
       <h2 class="f4 f4-ns mb0 black-90">#00<%= @notebook.id %></h2>
-      <h3 class="f5 f4-ns mb0 black-90"><%= @notebook.title %></h3>
-      <h3 class="f6 f5 fw4 mt2 black-60"><%= @notebook.description %></h3>
-    </a>
-  </article>
-</section>
+      <div class="mt3">
+        <label class="db fw4 lh-copy f6" for="title">Notebook title</label>
+        <input class="b pa2 input-reset ba bg-transparent" type="text" name="title"  id="title" value="<%= @notebook.title %>">
+      </div>
+      <div class="mt3">
+        <label class="db fw4 lh-copy f6" for="password">Description</label>
+        <input class="b pa2 input-reset ba bg-transparent" type="description" name="description"  id="description" value="<%= @notebook.description %>">
+      </div>
+    </fieldset>
+    <div class="mt3"><input class="f6 link dim br-pill ph3 pv2 mb2 dib white bg-black" type="submit" value="Edit"></div>
+  </form>
+</article>
