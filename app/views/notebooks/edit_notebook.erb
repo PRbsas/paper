@@ -3,22 +3,18 @@
     <input type="hidden" name="_method" value="patch">
     <fieldset class="ba b--transparent ph0 mh0">
       <legend class="f4 fw6 ph0 mh0">Edit Notebook</legend>
-      <h2 class="f4 f4-ns mb0 black-90">#00<%= @notebook.id %></h2>
+      <h2 class="f4 f4-ns mb0 black-90">#00<%= @notebooks.index(@notebook) +1 %></h2>
       <div class="mt3">
         <label class="db fw4 lh-copy f6" for="title">Notebook title</label>
-        <input class="b pa2 input-reset ba w-third mw5" type="text" name="title"  id="title" value="<%= @notebook.title %>">
+        <input class="b pa2 input-reset ba w-third mw5 bg-transparent" type="text" name="title"  id="title" value="<%= @notebook.title %>">
       </div>
       <div class="mt3">
         <label class="db fw4 lh-copy f6" for="password">Description</label>
-        <input class="pa2 input-reset ba w-two-thirds mw6" type="description" name="description"  id="description" value="<%= @notebook.description %>">
+        <input class="pa2 input-reset ba w-two-thirds mw6 bg-transparent" type="description" name="description"  id="description" value="<%= @notebook.description %>">
       </div>
     </fieldset>
     <div class="mt3">
       <input class="f6 link dim br-pill ph3 pv2 mb2 dib white bg-black" type="submit" value="Edit">
-      <form action="/notebooks/<%= @notebook.id %>/delete" method="post">
-        <input id="hidden" type="hidden" name="_method" value="delete">
-        <input class="f6 link dim br-pill ph3 pv2 mb2 dib white bg-black" type="submit" value="Delete">
-      </form>
     </div>
   </form>
 </article>

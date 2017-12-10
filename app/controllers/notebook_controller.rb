@@ -10,11 +10,16 @@ class NotebookController < ApplicationController
   end
 
   get '/notebooks/new' do
-    erb :'/notebooks/create_notebook'
+    if logged_in?
+      erb :'/notebooks/create_notebook'
+    else
+      redirect '/login'
+    end
   end
 
   get '/notebooks/:id' do
     if logged_in?
+      @notebooks = current_user.notebooks.all
       @notebook = Notebook.find_by_id(params[:id])
       erb :'/notebooks/show_notebook'
     else
@@ -24,6 +29,7 @@ class NotebookController < ApplicationController
 
   get '/notebooks/:id/edit' do
     if logged_in?
+      @notebooks = current_user.notebooks.all
       @notebook = current_user.notebooks.find_by_id(params[:id])
       erb :'/notebooks/edit_notebook'
     else
@@ -59,7 +65,7 @@ class NotebookController < ApplicationController
       @notebook.destroy
       redirect '/notebooks'
     else
-      redirect "/login"
+      redirect '/login'
     end
   end
 end
