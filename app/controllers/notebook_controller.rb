@@ -51,4 +51,15 @@ class NotebookController < ApplicationController
       redirect "/notebooks/#{@notebook.id}/edit"
     end
   end
+
+  delete '/notebooks/:id/delete' do
+    @notebook = current_user.notebooks.find_by_id(params[:id])
+    if @notebook && logged_in?
+      @notebook = Notebook.find_by_id(params[:id])
+      @notebook.destroy
+      redirect '/notebooks'
+    else
+      redirect "/login"
+    end
+  end
 end
