@@ -11,9 +11,11 @@ class NoteController < ApplicationController
 
   post '/notebooks/:id' do
     @notebook = Notebook.find_by_id(params[:id])
-    @note = Note.new(content: params[:content]) unless params[:content].empty?
-    @note.save
-    @notebook.notes << @note
-    redirect "/notebooks/#{@notebook.id}"
+    if params[:content]
+      @note = Note.new(content: params[:content]) unless params[:content].empty?
+      @note.save
+      @notebook.notes << @note
+      redirect "/notebooks/#{@notebook.id}"
+    end
   end
 end

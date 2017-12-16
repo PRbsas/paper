@@ -7,6 +7,7 @@ end
 use Rack::MethodOverride
 use UserController
 use NotebookController
-use BookmarkController
+use TaskController
 use NoteController
+use BookmarkController
 run ApplicationController

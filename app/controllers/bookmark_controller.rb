@@ -11,9 +11,11 @@ class BookmarkController < ApplicationController
 
   post '/notebooks/:id' do
     @notebook = Notebook.find_by_id(params[:id])
-    @bookmark = Bookmark.new(link: params[:link]) unless params[:link].empty?
-    @bookmark.save
-    @notebook.bookmarks << @bookmark
-    redirect "/notebooks/#{@notebook.id}"
+    if params[:link]
+      @bookmark = Bookmark.new(link: params[:link]) unless params[:link].empty?
+      @bookmark.save
+      @notebook.bookmarks << @bookmark
+      redirect "/notebooks/#{@notebook.id}"
+    end 
   end
 end

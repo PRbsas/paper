@@ -19,6 +19,9 @@
         <h3 class="f6 f5 fw4 mt2 black-60"># <%= bookmark.link %></h3>
       </a>
     <% end %>
+    <% @notebook.tasks.each do |task| %>
+      <h3 class="f6 f5 fw4 mt2 black-60">· <%= task.name %></h3>
+    <% end %>
 
     <a class="f6 link dim br-pill ph3 pv2 mb2 dib white bg-black" href="/notebooks/<%= @notebook.id %>/notes/new" title="Add">Add Note</a>
     <a class="f6 link dim br-pill ph3 pv2 mb2 dib white bg-black" href="/notebooks/<%= @notebook.id %>/bookmarks/new" title="Add">Add Bookmark</a>
@@ -40,6 +43,10 @@
       <dl class="fl fn-l w-50 dib-l w-auto-l lh-title mr5-l">
         <dd class="f6 fw4 ml0">Bookmarks</dd>
         <dd class="f3 fw6 ml0"><%= @notebook.bookmarks.all.size %></dd>
+      </dl>
+      <dl class="fl fn-l w-50 dib-l w-auto-l lh-title mr5-l">
+        <dd class="f6 fw4 ml0">Tasks</dd>
+        <dd class="f3 fw6 ml0"><%= @notebook.tasks.all.size %></dd>
       </dl>
   </div>
 </article>
