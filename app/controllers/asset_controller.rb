@@ -1,4 +1,22 @@
-class TaskController < ApplicationController
+class AssetsController < ApplicationController
+
+  get '/notebooks/:id/notes/new' do
+    if logged_in?
+      @notebook = Notebook.find_by_id(params[:id])
+      erb :'/notes/create_note'
+    else
+      redirect '/login'
+    end
+  end
+
+  get '/notebooks/:id/bookmarks/new' do
+    if logged_in?
+      @notebook = Notebook.find_by_id(params[:id])
+      erb :'/bookmarks/create_bookmark'
+    else
+      redirect '/login'
+    end
+  end
 
   get '/notebooks/:id/tasks/new' do
     if logged_in?
