@@ -10,10 +10,16 @@
       <h2 class="f4 f4-ns mb0 black-90">#00<%= @notebooks.index(@notebook) +1 %></h2>
       <h3 class="f5 f4-ns mb0 black-90"><%= @notebook.title %></h3>
       <h3 class="f6 f5 fw4 mt2 black-60"><%= @notebook.description %></h3>
-      <% @notebook.notes.each do |note| %>
-        <h3 class="f6 f5 fw4 mt2 black-60">- <%= note.content %></h3>
-      <% end %>
     </a>
+    <% @notebook.notes.each do |note| %>
+      <h3 class="f6 f5 fw4 mt2 black-60">- <%= note.content %></h3>
+    <% end %>
+    <% @notebook.bookmarks.each do |bookmark| %>
+      <a href="<%= bookmark.link %>" class="ph2 ph0-ns pb3 link db">
+        <h3 class="f6 f5 fw4 mt2 black-60"># <%= bookmark.link %></h3>
+      </a>
+    <% end %>
+
     <a class="f6 link dim br-pill ph3 pv2 mb2 dib white bg-black" href="/notebooks/<%= @notebook.id %>/notes/new" title="Add">Add Note</a>
     <a class="f6 link dim br-pill ph3 pv2 mb2 dib white bg-black" href="/notebooks/<%= @notebook.id %>/bookmarks/new" title="Add">Add Bookmark</a>
     <a class="f6 link dim br-pill ph3 pv2 mb2 dib white bg-black" href="/notebooks/<%= @notebook.id %>/tasks/new" title="Add">Add Task</a>
@@ -30,6 +36,10 @@
       <dl class="fl fn-l w-50 dib-l w-auto-l lh-title mr5-l">
         <dd class="f6 fw4 ml0">Notes</dd>
         <dd class="f3 fw6 ml0"><%= @notebook.notes.all.size %></dd>
+      </dl>
+      <dl class="fl fn-l w-50 dib-l w-auto-l lh-title mr5-l">
+        <dd class="f6 fw4 ml0">Bookmarks</dd>
+        <dd class="f3 fw6 ml0"><%= @notebook.bookmarks.all.size %></dd>
       </dl>
   </div>
 </article>
