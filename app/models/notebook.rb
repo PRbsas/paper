@@ -3,5 +3,6 @@ class Notebook < ActiveRecord::Base
 
   belongs_to :user
   has_many :notes
-  has_many :bookmarks 
+  has_many :bookmarks
+  has_many :tasks 
 end
