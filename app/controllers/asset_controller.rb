@@ -1,4 +1,4 @@
-class AssetsController < ApplicationController
+class AssetController < ApplicationController
 
   get '/notebooks/:id/notes/new' do
     if logged_in?
