@@ -10,7 +10,12 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20171210191715) do
+ActiveRecord::Schema.define(version: 20171216163252) do
+
+  create_table "bookmarks", force: :cascade do |t|
+    t.string "link"
+    t.integer "notebook_id"
+  end
 
   create_table "notebooks", force: :cascade do |t|
     t.string "title"

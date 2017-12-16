@@ -15,8 +15,8 @@
       <% end %>
     </a>
     <a class="f6 link dim br-pill ph3 pv2 mb2 dib white bg-black" href="/notebooks/<%= @notebook.id %>/notes/new" title="Add">Add Note</a>
-    <a class="f6 link dim br-pill ph3 pv2 mb2 dib white bg-black" href="/notebooks/bookmarks/new" title="Add">Add Bookmark</a>
-    <a class="f6 link dim br-pill ph3 pv2 mb2 dib white bg-black" href="/notebooks/tasks/new" title="Add">Add Task</a>
+    <a class="f6 link dim br-pill ph3 pv2 mb2 dib white bg-black" href="/notebooks/<%= @notebook.id %>/bookmarks/new" title="Add">Add Bookmark</a>
+    <a class="f6 link dim br-pill ph3 pv2 mb2 dib white bg-black" href="/notebooks/<%= @notebook.id %>/tasks/new" title="Add">Add Task</a>
     <form action="/notebooks/<%= @notebook.id %>/delete" method="post">
       <input id="hidden" type="hidden" name="_method" value="delete">
       <input class="f6 link dim br-pill ph3 pv2 mb2 dib white bg-black" type="submit" value="Delete">
