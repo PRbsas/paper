@@ -6,7 +6,7 @@
 
 <section class="cf pa3 mw9 center">
   <article class="fl w-100 w-50-m  w-50-ns pa2-ns">
-    <a href="/notebooks/<%= @notebook.id %>/edit" class="ph2 ph0-ns pb3 link db">
+    <a href="/notebooks/<%= @notebook.slug %>/edit" class="ph2 ph0-ns pb3 link db">
       <h2 class="f4 f4-ns mb0 black-90">#00<%= @notebooks.index(@notebook) +1 %></h2>
       <h3 class="f5 f4-ns mb0 black-90"><%= @notebook.title %></h3>
       <h3 class="f6 f5 fw4 mt2 black-60"><%= @notebook.description %></h3>
@@ -23,10 +23,10 @@
       <h3 class="f6 f5 fw4 mt2 black-60">· <%= task.name %></h3>
     <% end %>
 
-    <a class="f6 link dim br-pill ph3 pv2 mb2 dib white bg-black" href="/notebooks/<%= @notebook.id %>/notes/new" title="Add">Add Note</a>
-    <a class="f6 link dim br-pill ph3 pv2 mb2 dib white bg-black" href="/notebooks/<%= @notebook.id %>/bookmarks/new" title="Add">Add Bookmark</a>
-    <a class="f6 link dim br-pill ph3 pv2 mb2 dib white bg-black" href="/notebooks/<%= @notebook.id %>/tasks/new" title="Add">Add Task</a>
-    <form action="/notebooks/<%= @notebook.id %>/delete" method="post">
+    <a class="f6 link dim br-pill ph3 pv2 mb2 dib white bg-black" href="/notebooks/<%= @notebook.slug %>/notes/new" title="Add">Add Note</a>
+    <a class="f6 link dim br-pill ph3 pv2 mb2 dib white bg-black" href="/notebooks/<%= @notebook.slug %>/bookmarks/new" title="Add">Add Bookmark</a>
+    <a class="f6 link dim br-pill ph3 pv2 mb2 dib white bg-black" href="/notebooks/<%= @notebook.slug %>/tasks/new" title="Add">Add Task</a>
+    <form action="/notebooks/<%= @notebook.slug %>/delete" method="post">
       <input id="hidden" type="hidden" name="_method" value="delete">
       <input class="f6 link dim br-pill ph3 pv2 mb2 dib white bg-black" type="submit" value="Delete">
     </form>

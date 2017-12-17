@@ -17,20 +17,20 @@ class NotebookController < ApplicationController
     end
   end
 
-  get '/notebooks/:id' do
+  get '/notebooks/:slug' do
     if logged_in?
       @notebooks = current_user.notebooks.all
-      @notebook = Notebook.find_by_id(params[:id])
+      @notebook = Notebook.find_by_slug(params[:slug])
       erb :'/notebooks/show_notebook'
     else
       redirect '/'
     end
   end
 
-  get '/notebooks/:id/edit' do
+  get '/notebooks/:slug/edit' do
     if logged_in?
       @notebooks = current_user.notebooks.all
-      @notebook = current_user.notebooks.find_by_id(params[:id])
+      @notebook = current_user.notebooks.find_by_slug(params[:slug])
       erb :'/notebooks/edit_notebook'
     else
       redirect '/login'
@@ -40,28 +40,28 @@ class NotebookController < ApplicationController
   post '/notebooks' do
     @notebook = current_user.notebooks.create(title: params[:title], description: params[:description]) unless params[:title].empty?
     if @notebook
-      redirect "/notebooks/#{@notebook.id}"
+      redirect "/notebooks/#{@notebook.slug}"
     else
       redirect '/notebooks/new'
     end
   end
 
-  patch '/notebooks/:id' do
-    @notebook = current_user.notebooks.find_by_id(params[:id])
+  patch '/notebooks/:slug' do
+    @notebook = current_user.notebooks.find_by_slug(params[:slug])
     if logged_in? && !params[:title].empty?
       @notebook.title = (params[:title])
       @notebook.description = (params[:description])
       @notebook.save
-      redirect "/notebooks/#{@notebook.id}"
+      redirect "/notebooks/#{@notebook.slug}"
     else
-      redirect "/notebooks/#{@notebook.id}/edit"
+      redirect "/notebooks/#{@notebook.slug}/edit"
     end
   end
 
-  delete '/notebooks/:id/delete' do
-    @notebook = current_user.notebooks.find_by_id(params[:id])
+  delete '/notebooks/:slug/delete' do
+    @notebook = current_user.notebooks.find_by_slug(params[:slug])
     if @notebook && logged_in?
-      @notebook = Notebook.find_by_id(params[:id])
+      @notebook = Notebook.find_by_slug(params[:slug])
       @notebook.destroy
       redirect '/notebooks'
     else

@@ -7,7 +7,7 @@
 <section class="cf w-100 pa2-ns">
   <% @notebooks.each.with_index(1) do |notebook, i| %>
   <article class="fl w-100 w-50-m  w-25-ns pa2-ns">
-    <a href="/notebooks/<%= notebook.id %>" class="ph2 ph0-ns pb3 link db">
+    <a href="/notebooks/<%= notebook.slug %>" class="ph2 ph0-ns pb3 link db">
       <h2 class="f4 f4-ns mb0 black-90">#00<%= i %></h2>
       <h3 class="f5 f4-ns mb0 black-90"><%= notebook.title %></h3>
       <h3 class="f6 f5 fw4 mt2 black-60"><%= notebook.description %></h3>

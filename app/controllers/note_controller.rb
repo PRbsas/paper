@@ -1,21 +1,21 @@
 class NoteController < ApplicationController
 
-  get '/notebooks/:id/notes/new' do
+  get '/notebooks/:slug/notes/new' do
     if logged_in?
-      @notebook = Notebook.find_by_id(params[:id])
+      @notebook = Notebook.find_by_slug(params[:slug])
       erb :'/notes/create_note'
     else
       redirect '/login'
     end
   end
 
-  post '/notebooks/:id' do
-    @notebook = Notebook.find_by_id(params[:id])
+  post '/notebooks/:slug' do
+    @notebook = Notebook.find_by_slug(params[:slug])
     if params[:content]
       @note = Note.new(content: params[:content]) unless params[:content].empty?
       @note.save
       @notebook.notes << @note
-      redirect "/notebooks/#{@notebook.id}"
+      redirect "/notebooks/#{@notebook.slug}"
     end
   end
 end
