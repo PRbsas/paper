@@ -62,6 +62,9 @@ class NotebookController < ApplicationController
     @notebook = current_user.notebooks.find_by_slug(params[:slug])
     if @notebook && logged_in?
       @notebook = Notebook.find_by_slug(params[:slug])
+      @notebook.tasks.destroy
+      @notebook.bookmarks.destroy
+      @notebook.notes.destroy
       @notebook.destroy
       redirect '/notebooks'
     else
