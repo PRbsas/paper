@@ -1,4 +1,10 @@
-<section id="center" class="cf pa3 mw9 center">
+<% if flash.has?(:message) %>
+<section class="cf pa3 mw9 center">
+  <h6 class="f6 pa2-ns"><%= flash[:message] %></h6>
+</section>
+<% end %>
+
+<section class="cf pa3 mw9 center">
   <article class="fl w-100 w-50-m  w-50-ns pa2-ns">
     <a href="/notebooks/<%= @notebook.slug %>/edit" class="ph2 ph0-ns pb3 link db">
       <h2 class="f4 f4-ns mb0 black-90">#00<%= @notebooks.index(@notebook) +1 %></h2>

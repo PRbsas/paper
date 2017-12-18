@@ -1,4 +1,5 @@
 class NotebookController < ApplicationController
+  use Rack::Flash
 
   get '/notebooks' do
     if logged_in?
@@ -40,6 +41,7 @@ class NotebookController < ApplicationController
   post '/notebooks' do
     @notebook = current_user.notebooks.create(title: params[:title], description: params[:description]) unless params[:title].empty?
     if @notebook
+      flash[:message] = "Successfully created notebook."
       redirect "/notebooks/#{@notebook.slug}"
     else
       redirect '/notebooks/new'
