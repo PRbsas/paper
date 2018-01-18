@@ -9,7 +9,7 @@ class NoteController < ApplicationController
     end
   end
 
-  post '/notebooks/:slug' do
+  post '/notebooks/:slug/notes' do
     @notebook = Notebook.find_by_slug(params[:slug])
     if params[:content]
       @note = Note.new(content: params[:content]) unless params[:content].empty?

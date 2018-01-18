@@ -9,7 +9,7 @@ class BookmarkController < ApplicationController
     end
   end
 
-  post '/notebooks/:slug' do
+  post '/notebooks/:slug/bookmarks' do
     @notebook = Notebook.find_by_slug(params[:slug])
     if params[:link]
       @bookmark = Bookmark.new(link: params[:link]) unless params[:link].empty?
