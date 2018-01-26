@@ -19,9 +19,8 @@ class NotebookController < ApplicationController
   end
 
   get '/notebooks/:slug' do
-    if logged_in?
+    if logged_in? && @notebook = current_user.notebooks.find_by_slug(params[:slug])
       @notebooks = current_user.notebooks.all
-      @notebook = Notebook.find_by_slug(params[:slug])
       erb :'/notebooks/show_notebook'
     else
       redirect '/'
@@ -29,9 +28,8 @@ class NotebookController < ApplicationController
   end
 
   get '/notebooks/:slug/edit' do
-    if logged_in?
+    if logged_in? && @notebook = current_user.notebooks.find_by_slug(params[:slug])
       @notebooks = current_user.notebooks.all
-      @notebook = current_user.notebooks.find_by_slug(params[:slug])
       erb :'/notebooks/edit_notebook'
     else
       redirect '/login'
@@ -39,14 +37,15 @@ class NotebookController < ApplicationController
   end
 
   post '/notebooks' do
+  if @notebook = current_user.notebooks.find_by(title: params[:title])
+    flash[:message] = "A Notebook with this title already exists:"
+    redirect "/notebooks/#{@notebook.slug}"
+  else
     @notebook = current_user.notebooks.create(title: params[:title], description: params[:description]) unless params[:title].empty?
-    if @notebook
-      flash[:message] = "Successfully created notebook."
-      redirect "/notebooks/#{@notebook.slug}"
-    else
-      redirect '/notebooks/new'
-    end
+    flash[:message] = "Successfully created notebook."
+    redirect "/notebooks/#{@notebook.slug}"
   end
+end
 
   patch '/notebooks/:slug' do
     @notebook = current_user.notebooks.find_by_slug(params[:slug])
